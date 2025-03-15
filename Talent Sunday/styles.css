@@ -1,179 +1,196 @@
 /* --- CSS Variables (Custom Properties) --- */
 :root {
-    --font-family-body: 'Georgia', serif;
-    --font-family-heading: 'Playfair Display', serif;
-    --color-primary: #007bff;
+    --font-family-body: 'Roboto', sans-serif;
+    --font-family-heading: 'Montserrat', sans-serif;
+    --color-primary: #4CAF50;
     --color-text: #333;
-    --color-bg: #f4f4f4;
+    --color-bg: #f8f8f8;
     --color-white: #fff;
     --color-border: #ddd;
     --color-error: #ffcccc;
     --color-error-text: red;
     --box-shadow-color: rgba(0, 0, 0, 0.1);
-    --button-gradient-start: #6a11cb;
-    --button-gradient-end: #2575fc;
+    --button-gradient-start: #4CAF50;
+    --button-gradient-end: #388E3C;
+    --form-group-margin-bottom: 20px;
+    --legend-bg: #f0f8db;
 }
 
 /* --- Base Styles --- */
 body {
     font-family: var(--font-family-body);
-    margin: 20px;
+    margin: 0;
+    padding: 0;
     line-height: 1.6;
     background-color: var(--color-bg);
     color: var(--color-text);
 }
 
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--box-shadow-color);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 h1 {
     font-family: var(--font-family-heading);
-    text-align: center;
     color: var(--color-primary);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     letter-spacing: 1px;
-    text-shadow: 1px 1px 2px var(--box-shadow-color);
+}
+
+.church-info {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.church-info i {
+    margin-right: 8px;
 }
 
 /* --- Form Styles --- */
 form {
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: var(--color-white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--box-shadow-color);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 fieldset {
-    margin-bottom: 20px;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
 }
 
 legend {
-    font-weight: bold;
-    font-size: 1.1em;
+    font-family: var(--font-family-heading);
+    font-size: 1.2rem;
     color: var(--color-primary);
-    padding: 0 10px;
+    padding: 8px 15px;
+    background-color: var(--legend-bg);
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 5px var(--box-shadow-color);
+    display: inline-block;
+}
+
+legend i {
+    margin-right: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--form-group-margin-bottom);
 }
 
 label {
-    display: block;
+    font-weight: 500;
     margin-bottom: 8px;
-    font-weight: bold;
+    color: #555;
+}
+
+label i {
+    margin-right: 5px;
 }
 
 input,
 select,
 textarea {
-    width: calc(100% - 18px);
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 12px;
     border: 1px solid var(--color-border);
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #444;
+    background-color: var(--color-white);
+    transition: border-color 0.2s ease;
 }
 
-textarea.textarea-small {
-    height: 100px;
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+input[type="text"][readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
 /* --- Button Styles --- */
 button {
     background: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
     color: var(--color-white);
-    padding: 12px 20px;
+    padding: 14px 25px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    display: block;
-    margin-top: 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 10px var(--box-shadow-color);
+    font-size: 1.1rem;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 0 4px 12px var(--box-shadow-color);
+    font-family: var(--font-family-heading);
 }
 
 button:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px var(--box-shadow-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--box-shadow-color);
 }
 
 button:focus {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--button-gradient-start);
     outline-offset: 2px;
 }
 
 /* --- Error Message Styles --- */
 .error {
     color: var(--color-error-text);
-    margin-top: 10px;
-    padding: 10px;
+    margin-top: 15px;
+    padding: 12px;
     background-color: var(--color-error);
     border: 1px solid var(--color-error-text);
-    border-radius: 4px;
+    border-radius: 6px;
     display: block;
-}
-
-/* --- Checkbox Label Alignment --- */
-input[type="checkbox"] {
-    display: inline-block;
-    width: auto;
-    margin-right: 5px;
-}
-
-label[for="paymentConfirmation"],
-label[for="rulesConfirmation"],
-label[for="consentConfirmation"] {
-    display: flex;
-    align-items: center;
-    font-weight: 500;
+    font-size: 0.9rem;
 }
 
 /* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-    form {
-        padding: 15px;
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
     }
 
     input,
     select,
     textarea {
-        font-size: 14px;
+        padding: 10px;
+        font-size: 0.9rem;
     }
 
     button {
-        font-size: 14px;
-    }
-}
-
-/* --- Enhanced Responsive Layout (Example using Flexbox) --- */
-@media (min-width: 600px) {
-    fieldset {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    label {
-        flex: 1 0 45%;
-        max-width: 45%;
-    }
-
-    input,
-    select,
-    textarea {
-        flex: 1 0 50%;
-        max-width: 50%;
-        margin-bottom: 10px;
-    }
-
-    /* Full-width elements */
-    textarea#performanceDescription,
-    textarea#equipment,
-    textarea#participantNames {
-        flex: 0 0 100%;
-        max-width: 100%;
+        font-size: 1rem;
     }
 }
