@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registrationForm');
     const talentTypeSelect = document.getElementById('talentType');
-    const otherTalentLabel = document.getElementById('otherTalentLabel');
+    const otherTalentGroup = document.getElementById('otherTalentGroup');
     const otherTalentInput = document.getElementById('otherTalent');
     const paymentMethodSelect = document.getElementById('paymentMethod');
-    const paymentSlipLabel = document.getElementById('paymentSlipLabel');
-    const paymentSlipInput = document.getElementById('paymentSlip');
-    const transactionIdLabel = document.getElementById('transactionIdLabel');
-    const transactionIdInput = document.getElementById('transactionId');
+    const cashDetails = document.getElementById('cashDetails');
+    const transferDetails = document.getElementById('transferDetails');
+    const transferNameGroup = document.getElementById('transferNameGroup');
+    const transactionNameInput = document.getElementById('transactionName');
     const errorMessagesDiv = document.getElementById('errorMessages');
 
     // Function to display error messages
@@ -25,39 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Talent Type Change Handler
     talentTypeSelect.addEventListener('change', () => {
         if (talentTypeSelect.value === 'other') {
-            otherTalentLabel.style.display = 'block';
-            otherTalentInput.style.display = 'block';
+            otherTalentGroup.style.display = 'flex';
             otherTalentInput.setAttribute('required', 'required');
         } else {
-            otherTalentLabel.style.display = 'none';
-            otherTalentInput.style.display = 'none';
+            otherTalentGroup.style.display = 'none';
             otherTalentInput.removeAttribute('required');
         }
     });
 
     // Payment Method Change Handler
     paymentMethodSelect.addEventListener('change', () => {
-        if (paymentMethodSelect.value === 'online') {
-            paymentSlipLabel.style.display = 'none';
-            paymentSlipInput.style.display = 'none';
-            paymentSlipInput.removeAttribute('required');
-            transactionIdLabel.style.display = 'block';
-            transactionIdInput.style.display = 'block';
-            transactionIdInput.setAttribute('required', 'required');
-        } else if (paymentMethodSelect.value !== '') {
-            paymentSlipLabel.style.display = 'block';
-            paymentSlipInput.style.display = 'block';
-            paymentSlipInput.setAttribute('required', 'required');
-            transactionIdLabel.style.display = 'none';
-            transactionIdInput.style.display = 'none';
-            transactionIdInput.removeAttribute('required');
+        if (paymentMethodSelect.value === 'cash') {
+            cashDetails.style.display = 'block';
+            transferDetails.style.display = 'none';
+            transferNameGroup.style.display = 'none';
+            transactionNameInput.removeAttribute('required');
+        } else if (paymentMethodSelect.value === 'transfer') {
+            cashDetails.style.display = 'none';
+            transferDetails.style.display = 'block';
+            transferNameGroup.style.display = 'flex';
+            transactionNameInput.setAttribute('required', 'required');
         } else {
-            paymentSlipLabel.style.display = 'none';
-            paymentSlipInput.style.display = 'none';
-            paymentSlipInput.removeAttribute('required');
-            transactionIdLabel.style.display = 'none';
-            transactionIdInput.style.display = 'none';
-            transactionIdInput.removeAttribute('required');
+            cashDetails.style.display = 'none';
+            transferDetails.style.display = 'none';
+            transferNameGroup.style.display = 'none';
+            transactionNameInput.removeAttribute('required');
         }
     });
 
@@ -81,22 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
             formDataObject,
             'm5cA-okHHGdZuWJoh'    //  <----  YOUR Public Key
         )
-        .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
-            alert('Registration submitted successfully!');
-            form.reset();
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                alert('Registration submitted successfully!');
+                form.reset();
 
-            // Hide additional fields after successful submission
-            otherTalentLabel.style.display = 'none';
-            otherTalentInput.style.display = 'none';
-            paymentSlipLabel.style.display = 'none';
-            paymentSlipInput.style.display = 'none';
-            transactionIdLabel.style.display = 'none';
-            transactionIdInput.style.display = 'none';
+                // Hide additional fields after successful submission
+                otherTalentGroup.style.display = 'none';
+                cashDetails.style.display = 'none';
+                transferDetails.style.display = 'none';
+                transferNameGroup.style.display = 'none';
 
-        }, (err) => {
-            console.log('FAILED...', err);
-            displayError('Error submitting form. Please try again.');
-        });
+            }, (err) => {
+                console.log('FAILED...', err);
+                displayError('Error submitting form. Please try again.');
+            });
     });
 });
