@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Talent Sunday Registration</title>
+</head>
+
+<body>
+    <h1>Talent Sunday Registration</h1>
+    <form id="registrationForm">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+
+            <label for="membership">Church Membership (if applicable):</label>
+            <input type="text" id="membership" name="membership">
+        </fieldset>
+
+        <fieldset>
+            <legend>Performance Details</legend>
+            <label for="talentType">Talent Type:</label>
+            <select id="talentType" name="talentType" required>
+                <option value="">Select...</option>
+                <option value="singing">Singing</option>
+                <option value="dancing">Dancing</option>
+                <option value="instrumental">Instrumental</option>
+                <option value="drama">Drama/Spoken Word</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="otherTalent" id="otherTalentLabel" style="display: none;">Specify Other Talent:</label>
+            <input type="text" id="otherTalent" name="otherTalent" style="display: none;">
+
+            <label for="performanceTitle">Performance Title (if applicable):</label>
+            <input type="text" id="performanceTitle" name="performanceTitle">
+
+            <label for="performanceDescription">Performance Description:</label>
+            <textarea id="performanceDescription" name="performanceDescription" class="textarea-small"
+                required></textarea>
+
+            <label for="equipment">Equipment/Technical Needs:</label>
+            <textarea id="equipment" name="equipment" class="textarea-small"></textarea>
+
+            <label for="duration">Performance Duration (minutes):</label>
+            <input type="number" id="duration" name="duration" min="1">
+
+            <label for="participants">Number of Participants (if a group):</label>
+            <input type="number" id="participants" name="participants" min="1">
+
+            <label for="participantNames">Names of Participants (if a group, separated by commas):</label>
+            <textarea id="participantNames" name="participantNames" class="textarea-small"></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Payment Information</legend>
+            <label for="paymentAmount">Payment Amount (if applicable):</label>
+            <input type="number" id="paymentAmount" name="paymentAmount" min="0">
+
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod">
+                <option value="">Select...</option>
+                <option value="cash">Cash</option>
+                <option value="check">Check</option>
+                <option value="online">Online</option>
+            </select>
+
+            <label for="paymentSlip" id="paymentSlipLabel" style="display: none;">Upload Payment Slip:</label>
+            <input type="file" id="paymentSlip" name="paymentSlip" style="display: none;">
+
+            <label for="transactionId" id="transactionIdLabel" style="display: none;">Transaction ID:</label>
+            <input type="text" id="transactionId" name="transactionId" style="display: none;">
+
+            <label for="paymentConfirmation">
+                <input type="checkbox" id="paymentConfirmation" name="paymentConfirmation">
+                I confirm that I have made the payment.
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Confirmation</legend>
+            <label for="rulesConfirmation">
+                <input type="checkbox" id="rulesConfirmation" name="rulesConfirmation" required>
+                I have read and agree to the rules and regulations.
+            </label>
+
+            <label for="consentConfirmation">
+                <input type="checkbox" id="consentConfirmation" name="consentConfirmation" required>
+                I consent to recording and photographing performances.
+            </label>
+        </fieldset>
+
+        <button type="submit">Submit Registration</button>
+        <div id="errorMessages" class="error"></div>
+    </form>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init({
+            publicKey: "m5cA-okHHGdZuWJoh",
+          });
+       })();
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
